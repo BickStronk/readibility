@@ -3,35 +3,50 @@ from helper import get_string
 
 
 def main():
-    # TODO: Implement all of the functions below in the driver function
+    text = get_string("Text: ")
 
-    # Get the text from the user
+    num_of_letters = count_letters(text)
+    num_of_words = count_words(text) + 1
+    num_of_sentences = count_sentences(text)
 
-    # Count the number of letters, words, and sentences in the text
+    L = num_of_letters / num_of_words * 100
+    S = num_of_sentences / num_of_words * 100
 
-    # Compute the Coleman-Liau index
+    index = round(0.0588 * L - 0.296 * S - 15.8)
 
-    # Print the Coleman-Liau index
-
-    pass
+    if index < 1:
+        print("Before Grade 1")
+    elif index >= 16:
+        print("Grade 16+")
+    else:
+        print(f"Grade {index}")
 
 
 def count_letters(text):
-    # TODO: Count the number of letters in the text
+    num_of_letters = 0
+    for char in text:
+        if char.isalpha():
+            num_of_letters += 1
 
-    pass
+    return num_of_letters
 
 
 def count_words(text):
-    # TODO: Count the number of words in the text
+    num_of_words = 0
+    for char in text:
+        if char == " ":
+            num_of_words += 1
 
-    pass
+    return num_of_words
 
 
 def count_sentences(text):
-    # TODO: Count the number of sentences in the text
-    
-    pass
+    num_of_sentences = 0
+    for char in text:
+        if char in ["!", ",", ".", "?"]:
+            num_of_sentences += 1
+
+    return num_of_sentences
 
 
 # DO NOT MODIFY
